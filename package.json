@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "d3": "^5.7.0",
+    "gh-pages": "^2.0.0",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -16,9 +17,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "prettier-eslint": "^8.8.2"
-  }
+  },
+  "homepage": "https://daengdaenglee.github.io/react-d3-pie-chart-demo"
 }
