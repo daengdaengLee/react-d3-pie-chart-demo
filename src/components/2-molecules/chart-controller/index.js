@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ControllerHandle from '../../1-atoms/controller-handle';
 
 class ChartController extends Component {
   render() {
@@ -14,38 +15,20 @@ class ChartController extends Component {
           justifyContent: 'center',
         }}
       >
-        <div
-          style={{
-            width: '1rem',
-            height: '1rem',
-            backgroundColor: 'red',
-            marginRight: '1rem',
-            cursor: 'pointer',
-          }}
-          draggable
+        <ControllerHandle
+          type="red"
+          style={{ marginRight: '1rem' }}
           onDragStart={event => _onDragStart('red', event)}
           onClick={onClickRed}
         />
-        <div
-          style={{
-            width: '1rem',
-            height: '1rem',
-            backgroundColor: 'green',
-            marginRight: '1rem',
-            cursor: 'pointer',
-          }}
-          draggable
+        <ControllerHandle
+          type="green"
+          style={{ marginRight: '1rem' }}
           onDragStart={event => _onDragStart('green', event)}
           onClick={onClickGreen}
         />
-        <div
-          style={{
-            width: '1rem',
-            height: '1rem',
-            backgroundColor: 'blue',
-            cursor: 'pointer',
-          }}
-          draggable
+        <ControllerHandle
+          type="blue"
           onDragStart={event => _onDragStart('blue', event)}
           onClick={onClickBlue}
         />
