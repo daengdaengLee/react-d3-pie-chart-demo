@@ -10,9 +10,11 @@ class MainChartContainer extends Component {
       green: 1,
       blue: 1,
     };
+    this._inc = this._inc.bind(this);
   }
 
   render() {
+    const { _inc } = this;
     const { red, green, blue } = this.state;
     return (
       <div
@@ -24,9 +26,17 @@ class MainChartContainer extends Component {
         }}
       >
         <ChartViz red={red} green={green} blue={blue} />
-        <ChartController />
+        <ChartController
+          onClickRed={() => _inc('red')}
+          onClickGreen={() => _inc('green')}
+          onClickBlue={() => _inc('blue')}
+        />
       </div>
     );
+  }
+
+  _inc(type) {
+    this.setState(prevState => ({ ...prevState, [type]: prevState[type] + 1 }));
   }
 }
 
