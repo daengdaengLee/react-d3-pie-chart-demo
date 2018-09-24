@@ -17,10 +17,11 @@ class ChartViz extends Component {
     this._container = React.createRef();
     this._updateSize = this._updateSize.bind(this);
     this._arcD = this._arcD.bind(this);
+    this._onDrop = this._onDrop.bind(this);
   }
 
   render() {
-    const { _container, _arcD } = this;
+    const { _container, _arcD, _preventDefault, _onDrop } = this;
     const { red, green, blue } = this.props;
     const { width, height } = this.state;
     const data = [
@@ -32,7 +33,12 @@ class ChartViz extends Component {
       .sort(null)
       .value(d => d.value)(data);
     return (
-      <svg ref={_container} style={{ height: 0, flexGrow: 1 }}>
+      <svg
+        ref={_container}
+        style={{ height: 0, flexGrow: 1 }}
+        onDragOver={_preventDefault}
+        onDrop={_onDrop}
+      >
         <g transform={`translate(${width / 2}, ${height / 2})`}>
           {pieData.map(obj => (
             <path key={obj.index} d={_arcD(obj)} fill={obj.data.label} />
@@ -71,18 +77,30 @@ class ChartViz extends Component {
       .innerRadius(distance / 8)
       .outerRadius(distance / 4)(d);
   }
+
+  _preventDefault(event) {
+    event.preventDefault();
+  }
+
+  _onDrop(event) {
+    const type = event.dataTransfer.getData('type');
+    const { onInc } = this.props;
+    onInc(type);
+  }
 }
 
 ChartViz.defaultProps = {
   red: 1,
   green: 1,
   blue: 1,
+  onInc: () => {},
 };
 
 ChartViz.propTypes = {
   red: PropTypes.number,
   green: PropTypes.number,
   blue: PropTypes.number,
+  onInc: PropTypes.func,
 };
 
 export default ChartViz;

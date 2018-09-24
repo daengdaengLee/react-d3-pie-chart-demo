@@ -25,7 +25,7 @@ class MainChartContainer extends Component {
           flexDirection: 'column',
         }}
       >
-        <ChartViz red={red} green={green} blue={blue} />
+        <ChartViz red={red} green={green} blue={blue} onInc={_inc} />
         <ChartController
           onClickRed={() => _inc('red')}
           onClickGreen={() => _inc('green')}
