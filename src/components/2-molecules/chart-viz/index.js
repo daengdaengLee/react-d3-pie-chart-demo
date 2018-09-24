@@ -28,7 +28,9 @@ class ChartViz extends Component {
       { label: 'green', value: green },
       { label: 'blue', value: blue },
     ];
-    const pieData = pie().value(d => d.value)(data);
+    const pieData = pie()
+      .sort(null)
+      .value(d => d.value)(data);
     return (
       <svg ref={_container} style={{ height: 0, flexGrow: 1 }}>
         <g transform={`translate(${width / 2}, ${height / 2})`}>
